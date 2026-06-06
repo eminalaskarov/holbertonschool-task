@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holberton Social Network</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        body { padding-top: 30px; background-color: #fafafa; }
+        .main-container { max-width: 650px; margin: 0 auto; }
+        .post-card { border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .user-tag { font-weight: bold; color: #ff5722; }
+        .time-meta { font-size: 0.75rem; color: #999; }
+    </style>
+</head>
+<body>
+    <div class="container main-container">
+        <header style="text-align: center; margin-bottom: 40px;">
+            <h2>🚀 Holberton Social Space</h2>
+            <p>Connect and share your daily updates</p>
+        </header>
+
+        <article>
+            <form action="/publish" method="POST">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="e.g., john_doe" required>
+                
+                <label for="content">What's happening?</label>
+                <textarea id="content" name="content" placeholder="Share your thoughts..." rows="3" required></textarea>
+                
+                <button type="submit" class="contrast">Post to Feed</button>
+            </form>
+        </article>
+
+        <hr>
+
+        <section>
+            <h3>Live Feed</h3>
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="card post-card">
+                        <span class="user-tag">@{{ post['author'] }}</span>
+                        <p style="margin: 10px 0;">{{ post['message'] }}</p>
+                        <div class="time-meta">Posted at: {{ post['created_at'] }}</div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center; color: #888;">No posts yet. Start the conversation!</p>
+            {% endif %}
+        </section>
+    </div>
+</body>
+</html>
