@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS user_posts;
+
+CREATE TABLE user_posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    author TEXT NOT NULL,
+    message TEXT NOT NULL
+);
